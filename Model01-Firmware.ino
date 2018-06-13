@@ -47,6 +47,8 @@
 // Support for DualUse
 #include "Kaleidoscope-Qukeys.h"
 
+#include "Kaleidoscope-BetterShifting.h"
+
 
 /** This 'enum' is a list of all the macros used by the Model 01's firmware
   * The names aren't particularly important. What is important is that each
@@ -253,6 +255,7 @@ KALEIDOSCOPE_INIT_PLUGINS(
     MouseKeys,
 
 		// Qukeys is used for making the Alt key behave as Enter when tapped.
+		BetterShifting,
     Qukeys
   );
 
