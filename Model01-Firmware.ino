@@ -78,7 +78,6 @@ enum { MACRO_VERSION_INFO,
        MACRO_LAUNCHBAR,
        MACRO_DEL_LINE,
        MACRO_1PASSWORD,
-       MACRO_HEADING6,
        MACRO_ANY
      };
 
@@ -157,7 +156,7 @@ const Key keymaps[][ROWS][COLS] PROGMEM = {
    ___, Key_Delete, ___, ___,
    ___,
 
-   Consumer_ScanPreviousTrack, M(MACRO_HEADING6),                 Key_F7,                   Key_F8,                   Key_F9,          Key_F10,          Key_F11,
+   Consumer_ScanPreviousTrack, Key_F6,                 Key_F7,                   Key_F8,                   Key_F9,          Key_F10,          Key_F11,
    Consumer_PlaySlashPause,    Consumer_ScanNextTrack, Key_LeftCurlyBracket,     Key_RightCurlyBracket,    Key_LeftBracket, Key_RightBracket, Key_F12,
                                Key_LeftArrow,          Key_DownArrow,            Key_UpArrow,              Key_RightArrow,  ___,              ___,
    Key_PcApplication,          Key_Mute,               Consumer_VolumeDecrement, Consumer_VolumeIncrement, ___,             Key_Backslash,    Key_Pipe,
@@ -245,9 +244,6 @@ const macro_t *macroAction(uint8_t macroIndex, uint8_t keyState) {
   case MACRO_1PASSWORD:
     return MACRODOWN(D(LeftGui), T(Backslash), U(LeftGui));
 
-  case MACRO_HEADING6:
-    return MACRODOWN(D(LeftControl), T(A), U(LeftControl), D(LeftShift), T(3), T(3), T(3), T(3), T(3), T(3), U(LeftShift), T(Space));
-
   case MACRO_ANY:
     anyKeyMacro(keyState);
     break;
@@ -272,6 +268,61 @@ static kaleidoscope::LEDSolidColor solidViolet(130, 0, 120);
 
 
 
+// First, tell Kaleidoscope which plugins you want to use.
+// The order can be important. For example, LED effects are
+// added in the order they're listed here.
+KALEIDOSCOPE_INIT_PLUGINS(
+    // The boot greeting effect pulses the LED button for 10 seconds after the keyboard is first connected
+    BootGreetingEffect,
+
+    // The hardware test mode, which can be invoked by tapping Prog, LED and the left Fn button at the same time.
+    TestMode,
+
+    // LEDControl provides support for other LED modes
+    LEDControl,
+
+    // We start with the LED effect that turns off all the LEDs.
+    LEDOff,
+
+    // The rainbow effect changes the color of all of the keyboard's keys at the same time
+    // running through all the colors of the rainbow.
+    LEDRainbowEffect,
+
+    // The rainbow wave effect lights up your keyboard with all the colors of a rainbow
+    // and slowly moves the rainbow across your keyboard
+    LEDRainbowWaveEffect,
+
+    // The chase effect follows the adventure of a blue pixel which chases a red pixel across
+    // your keyboard. Spoiler: the blue pixel never catches the red pixel
+    LEDChaseEffect,
+
+    // These static effects turn your keyboard's LEDs a variety of colors
+    solidRed, solidOrange, solidYellow, solidGreen, solidBlue, solidIndigo, solidViolet,
+
+    // The breathe effect slowly pulses all of the LEDs on your keyboard
+    LEDBreatheEffect,
+
+    // The AlphaSquare effect prints each character you type, using your
+    // keyboard's LEDs as a display
+    AlphaSquareEffect,
+
+    // The stalker effect lights up the keys you've pressed recently
+    StalkerEffect,
+
+    // The numpad plugin is responsible for lighting up the 'numpad' mode
+    // with a custom LED effect
+    NumPad,
+
+    // The macros plugin adds support for macros
+    Macros,
+
+    // The MouseKeys plugin lets you add keys to your keymap which move the mouse.
+    MouseKeys,
+
+    Qukeys
+  );
+
+
 /** The 'setup' function is one of the two standard Arduino sketch functions.
   * It's called when your keyboard first powers up. This is where you set up
   * Kaleidoscope and any plugins.
@@ -281,61 +332,7 @@ void setup() {
   // First, call Kaleidoscope's internal setup function
   Kaleidoscope.setup();
 
-  // Next, tell Kaleidoscope which plugins you want to use.
-  // The order can be important. For example, LED effects are
-  // added in the order they're listed here.
-  Kaleidoscope.use(
-    // The boot greeting effect pulses the LED button for 10 seconds after the keyboard is first connected
-    &BootGreetingEffect,
-
-    // The hardware test mode, which can be invoked by tapping Prog, LED and the left Fn button at the same time.
-    &TestMode,
-
-    // LEDControl provides support for other LED modes
-    &LEDControl,
-
-    // We start with the LED effect that turns off all the LEDs.
-    &LEDOff,
-
-    // The rainbow effect changes the color of all of the keyboard's keys at the same time
-    // running through all the colors of the rainbow.
-    &LEDRainbowEffect,
-
-    // The rainbow wave effect lights up your keyboard with all the colors of a rainbow
-    // and slowly moves the rainbow across your keyboard
-    &LEDRainbowWaveEffect,
-
-    // The chase effect follows the adventure of a blue pixel which chases a red pixel across
-    // your keyboard. Spoiler: the blue pixel never catches the red pixel
-    &LEDChaseEffect,
-
-    // These static effects turn your keyboard's LEDs a variety of colors
-    &solidRed, &solidOrange, &solidYellow, &solidGreen, &solidBlue, &solidIndigo, &solidViolet,
-
-    // The breathe effect slowly pulses all of the LEDs on your keyboard
-    &LEDBreatheEffect,
-
-    // The AlphaSquare effect prints each character you type, using your
-    // keyboard's LEDs as a display
-    &AlphaSquareEffect,
-
-    // The stalker effect lights up the keys you've pressed recently
-    &StalkerEffect,
-
-    // The numlock plugin is responsible for lighting up the 'numpad' mode
-    // with a custom LED effect
-    &NumPad,
-
-    // The macros plugin adds support for macros
-    &Macros,
-
-    // The MouseKeys plugin lets you add keys to your keymap which move the mouse.
-    &MouseKeys,
-
-    &Qukeys
-  );
-
-  // While we hope to improve this in the future, the NumLock plugin
+  // While we hope to improve this in the future, the NumPad plugin
   // needs to be explicitly told which keymap layer is your numpad layer
   NumPad.numPadLayer = NUMPAD;
 
