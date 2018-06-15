@@ -44,9 +44,10 @@
 // Support for Keyboardio's internal keyboard testing mode
 #include "Kaleidoscope-Model01-TestMode.h"
 
-// Support for DualUse
+// Support for Qukeys
 #include "Kaleidoscope-Qukeys.h"
 
+// Support for BetterShifting
 #include "Kaleidoscope-BetterShifting.h"
 
 
@@ -134,7 +135,7 @@ const Key keymaps[][ROWS][COLS] PROGMEM = {
    Key_Enter,     Key_Y, Key_U, Key_I,     Key_O,         Key_P,         Key_Equals,
                   Key_H, Key_J, Key_K,     Key_L,         Key_Semicolon, Key_Quote,
    M(MACRO_EMDASH),  Key_N, Key_M, Key_Comma, Key_Period,    Key_Slash,     Key_Minus,
-   Key_RightShift, ALT_T(Enter), Key_Spacebar, CTL_T(KeypadMultiply),
+   Key_RightShift, ALT_T(Enter), Key_Spacebar, Key_RightControl,
    ShiftToLayer(FUNCTION)),
 
   [FUNCTION] =  KEYMAP_STACKED
@@ -254,8 +255,10 @@ KALEIDOSCOPE_INIT_PLUGINS(
     // The MouseKeys plugin lets you add keys to your keymap which move the mouse.
     MouseKeys,
 
-		// Qukeys is used for making the Alt key behave as Enter when tapped.
+    // BetterShifting forces proper shifting technique.
 		BetterShifting,
+
+		// Qukeys is used for making the Alt key behave as Enter when tapped.
     Qukeys
   );
 
