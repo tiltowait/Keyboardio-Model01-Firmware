@@ -135,7 +135,7 @@ const Key keymaps[][ROWS][COLS] PROGMEM = {
    Key_Enter,     Key_Y, Key_U, Key_I,     Key_O,         Key_P,         Key_Equals,
                   Key_H, Key_J, Key_K,     Key_L,         Key_Semicolon, Key_Quote,
    M(MACRO_EMDASH),  Key_N, Key_M, Key_Comma, Key_Period,    Key_Slash,     Key_Minus,
-   Key_RightShift, ALT_T(Enter), Key_Spacebar, Key_RightControl,
+   Key_RightShift, Key_Enter, Key_Spacebar, Key_RightControl,
    ShiftToLayer(FUNCTION)),
 
   [FUNCTION] =  KEYMAP_STACKED
@@ -291,6 +291,14 @@ void setup() {
 	// If that becomes a problem, LEDOFF.activate() should be
 	// called instead.
   LEDRainbowWaveEffect.activate();
+
+  BetterShifting.ignoreKeys(1, Key_LeftGui.raw);
+
+  QUKEYS(
+    kaleidoscope::Qukey(0, 2, 8, Key_LeftAlt)
+  );
+  Qukeys.setTimeout(200);
+  Qukeys.setReleaseDelay(20);
 }
 
 /** loop is the second of the standard Arduino sketch functions.
