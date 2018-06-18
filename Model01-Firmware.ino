@@ -31,18 +31,11 @@
 // Support for an "LED off mode"
 #include "LED-Off.h"
 
-// Support for the "Boot greeting" effect, which pulses the 'LED' button for 10s
-// when the keyboard is connected to a computer (or that computer is powered on)
-#include "Kaleidoscope-LEDEffect-BootGreeting.h"
-
 // Support for LED modes that pulse the keyboard's LED in a rainbow pattern
 #include "Kaleidoscope-LEDEffect-Rainbow.h"
 
 // Support for an LED mode that lights up the keys as you press them
 #include "Kaleidoscope-LED-Stalker.h"
-
-// Support for Keyboardio's internal keyboard testing mode
-#include "Kaleidoscope-Model01-TestMode.h"
 
 // Support for Qukeys
 #include "Kaleidoscope-Qukeys.h"
@@ -226,12 +219,6 @@ const macro_t *macroAction(uint8_t macroIndex, uint8_t keyState) {
 // The order can be important. For example, LED effects are
 // added in the order they're listed here.
 KALEIDOSCOPE_INIT_PLUGINS(
-    // The boot greeting effect pulses the LED button for 10 seconds after the keyboard is first connected
-    BootGreetingEffect,
-
-    // The hardware test mode, which can be invoked by tapping Prog, LED and the left Fn button at the same time.
-    TestMode,
-
     // LEDControl provides support for other LED modes
     LEDControl,
 
