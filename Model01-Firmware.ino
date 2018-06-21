@@ -19,9 +19,6 @@
 // Support for keys that move the mouse
 #include "Kaleidoscope-MouseKeys.h"
 
-// Support for macros
-#include "Kaleidoscope-Macros.h"
-
 // Support for controlling the keyboard's LEDs
 #include "Kaleidoscope-LEDControl.h"
 
@@ -42,29 +39,6 @@
 
 // Support for BetterShifting
 #include "Kaleidoscope-BetterShifting.h"
-
-
-/** This 'enum' is a list of all the macros used by the Model 01's firmware
-  * The names aren't particularly important. What is important is that each
-  * is unique.
-  *
-  * These are the names of your macros. They'll be used in two places.
-  * The first is in your keymap definitions. There, you'll use the syntax
-  * `M(MACRO_NAME)` to mark a specific keymap position as triggering `MACRO_NAME`
-  *
-  * The second usage is in the 'switch' statement in the `macroAction` function.
-  * That switch statement actually runs the code associated with a macro when
-  * a macro key is pressed.
-  */
-
-enum { MACRO_VERSION_INFO,
-       MACRO_EMDASH,
-       MACRO_LAUNCHBAR,
-       MACRO_DEL_LINE,
-       MACRO_1PASSWORD,
-     };
-
-
 
 /** The Model 01's key layouts are defined as 'keymaps'. By default, there are three
   * keymaps: The standard QWERTY keymap, the "Function layer" keymap and the "Numpad"
@@ -109,6 +83,17 @@ enum { MACRO_VERSION_INFO,
 
 enum { QWERTY, FUNCTION, NUMPAD }; // layers
 
+/**
+ * Define some special key combos.
+ * While we could use macros, this is easier, cheaper, and accomplishes the same thing.
+ */
+
+#define KEY_EMDASH      LSHIFT(LALT(Key_Minus))
+#define KEY_LAUNCHBAR   LCTRL(Key_Spacebar)
+#define KEY_DEL_LINE    LGUI(Key_Backspace)
+#define KEY_1PASSWORD   LGUI(Key_Backslash)
+#define KEY_THINGS      LCTRL(LALT(Key_Spacebar))
+
 /* This comment temporarily turns off astyle's indent enforcement
  *   so we can make the keymaps actually resemble the physical key layout better
  */
@@ -117,22 +102,22 @@ enum { QWERTY, FUNCTION, NUMPAD }; // layers
 const Key keymaps[][ROWS][COLS] PROGMEM = {
 
   [QWERTY] = KEYMAP_STACKED
-  (___,          Key_1, Key_2, Key_3, Key_4, Key_5, M(MACRO_DEL_LINE),
+  (___,          Key_1, Key_2, Key_3, Key_4, Key_5, KEY_DEL_LINE,
    Key_Backtick, Key_Q, Key_W, Key_E, Key_R, Key_T, Key_Tab,
    Key_PageUp,   Key_A, Key_S, Key_D, Key_F, Key_G,
    Key_PageDown, Key_Z, Key_X, Key_C, Key_V, Key_B, Key_Escape,
    Key_LeftControl, Key_Backspace, Key_LeftGui, Key_LeftShift,
    ShiftToLayer(FUNCTION),
 
-   M(MACRO_LAUNCHBAR),  Key_6, Key_7, Key_8,     Key_9,         Key_0,         LockLayer(NUMPAD),
+   KEY_LAUNCHBAR,  Key_6, Key_7, Key_8,     Key_9,         Key_0,         LockLayer(NUMPAD),
    Key_Enter,     Key_Y, Key_U, Key_I,     Key_O,         Key_P,         Key_Equals,
                   Key_H, Key_J, Key_K,     Key_L,         Key_Semicolon, Key_Quote,
-   M(MACRO_EMDASH),  Key_N, Key_M, Key_Comma, Key_Period,    Key_Slash,     Key_Minus,
+   KEY_EMDASH,  Key_N, Key_M, Key_Comma, Key_Period,    Key_Slash,     Key_Minus,
    Key_RightShift, Key_Enter, Key_Spacebar, Key_RightControl,
    ShiftToLayer(FUNCTION)),
 
   [FUNCTION] =  KEYMAP_STACKED
-  (M(MACRO_1PASSWORD),      Key_F1,           Key_F2,      Key_F3,     Key_F4,        Key_F5,           Key_LEDEffectNext,
+  (KEY_1PASSWORD,      Key_F1,           Key_F2,      Key_F3,     Key_F4,        Key_F5,           Key_LEDEffectNext,
    Key_Tab,  ___,              Key_mouseUp, ___,        Key_mouseBtnR, Key_mouseWarpEnd, Key_mouseWarpNE,
    Key_Home, Key_mouseL,       Key_mouseDn, Key_mouseR, Key_mouseBtnL, Key_mouseWarpNW,
    Key_End,  Key_PrintScreen,  Key_Insert,  ___,        Key_mouseBtnM, Key_mouseWarpSW,  Key_mouseWarpSE,
@@ -144,7 +129,7 @@ const Key keymaps[][ROWS][COLS] PROGMEM = {
                                Key_LeftArrow,          Key_DownArrow,            Key_UpArrow,              Key_RightArrow,  ___,              ___,
    Key_PcApplication,          Key_Mute,               Consumer_VolumeDecrement, Consumer_VolumeIncrement, ___,             Key_Backslash,    Key_Pipe,
    ___, ___, Key_Enter, ___,
-   LCTRL(LALT(Key_Spacebar))),
+   KEY_THINGS),
 
 
   [NUMPAD] =  KEYMAP_STACKED
@@ -155,7 +140,7 @@ const Key keymaps[][ROWS][COLS] PROGMEM = {
    ___, ___, ___, ___,
    ___,
 
-   M(MACRO_VERSION_INFO),  ___, Key_Keypad7, Key_Keypad8,   Key_Keypad9,        Key_KeypadSubtract, ___,
+   ___,  ___, Key_Keypad7, Key_Keypad8,   Key_Keypad9,        Key_KeypadSubtract, ___,
    ___,                    ___, Key_Keypad4, Key_Keypad5,   Key_Keypad6,        Key_KeypadAdd,      ___,
                            ___, Key_Keypad1, Key_Keypad2,   Key_Keypad3,        Key_Equals,         Key_Quote,
    ___,                    ___, Key_Keypad0, Key_KeypadDot, Key_KeypadMultiply, Key_KeypadDivide,   Key_Enter,
@@ -165,54 +150,6 @@ const Key keymaps[][ROWS][COLS] PROGMEM = {
 
 /* Re-enable astyle's indent enforcement */
 // *INDENT-ON*
-
-/** versionInfoMacro handles the 'firmware version info' macro
- *  When a key bound to the macro is pressed, this macro
- *  prints out the firmware build information as virtual keystrokes
- */
-
-static void versionInfoMacro(uint8_t keyState) {
-  if (keyToggledOn(keyState)) {
-    Macros.type(PSTR("Keyboardio Model 01 - Kaleidoscope "));
-    Macros.type(PSTR(BUILD_INFORMATION));
-  }
-}
-
-
-/** macroAction dispatches keymap events that are tied to a macro
-    to that macro. It takes two uint8_t parameters.
-
-    The first is the macro being called (the entry in the 'enum' earlier in this file).
-    The second is the state of the keyswitch. You can use the keyswitch state to figure out
-    if the key has just been toggled on, is currently pressed or if it's just been released.
-
-    The 'switch' statement should have a 'case' for each entry of the macro enum.
-    Each 'case' statement should call out to a function to handle the macro in question.
-
- */
-
-const macro_t *macroAction(uint8_t macroIndex, uint8_t keyState) {
-  switch (macroIndex) {
-
-  case MACRO_VERSION_INFO:
-    versionInfoMacro(keyState);
-    break;
-
-  case MACRO_EMDASH:
-    return MACRODOWN(D(LeftShift), D(LeftAlt), T(Minus), U(LeftAlt), U(LeftShift));
-
-  case MACRO_LAUNCHBAR:
-    return MACRODOWN(D(LeftControl), T(Space), U(LeftControl));
-
-  case MACRO_DEL_LINE:
-    return MACRODOWN(D(LeftGui), T(Backspace), U(LeftGui));
- 
-  case MACRO_1PASSWORD:
-    return MACRODOWN(D(LeftGui), T(Backslash), U(LeftGui));
-
-  }
-  return MACRO_NONE;
-}
 
 
 // First, tell Kaleidoscope which plugins you want to use.
@@ -235,9 +172,6 @@ KALEIDOSCOPE_INIT_PLUGINS(
     // The numpad plugin is responsible for lighting up the 'numpad' mode
     // with a custom LED effect
     NumPad,
-
-    // The macros plugin adds support for macros
-    Macros,
 
     // The MouseKeys plugin lets you add keys to your keymap which move the mouse.
     MouseKeys,
@@ -279,10 +213,13 @@ void setup() {
 	// called instead.
   LEDRainbowWaveEffect.activate();
 
+  // Keys added to BetterShifting.ignoreKeys() will respond no
+  // matter which shift key is pressed.
   BetterShifting.ignoreKeys(1, Key_LeftGui.raw);
 
+  // We want right alt (r2c8) to be enter on tap and alt on hold (L0).
   QUKEYS(
-    kaleidoscope::Qukey(0, 2, 8, Key_LeftAlt)
+    kaleidoscope::Qukey(0, 2, 8, Key_RightAlt)
   );
   Qukeys.setTimeout(200);
   Qukeys.setReleaseDelay(20);
