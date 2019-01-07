@@ -22,17 +22,37 @@
 // Support for controlling the keyboard's LEDs
 #include "Kaleidoscope-LEDControl.h"
 
+// Support for host power management (sleep/wake)
+#include "Kaleidoscope-HostPowerManagement.h"
+
 // Support for "Numlock" mode, which is mostly just the Numlock specific LED mode
 #include "Kaleidoscope-NumPad.h"
 
 // Support for LED modes that pulse the keyboard's LED in a rainbow pattern
 #include "Kaleidoscope-LEDEffect-Rainbow.h"
 
-// Support for an LED mode that lights up the keys as you press them
-#include "Kaleidoscope-LED-Stalker.h"
-
 // Support for Qukeys
 #include "Kaleidoscope-Qukeys.h"
+
+/** hostPowerManagementEventHandler dispatches power management events (suspend,
+ * resume, and sleep) to other functions that perform action based on these
+ * events.
+ */
+void hostPowerManagementEventHandler(kaleidoscope::plugin::HostPowerManagement::Event event) {
+  switch (event) {
+  case kaleidoscope::plugin::HostPowerManagement::Suspend:
+    LEDControl.paused = true;
+    LEDControl.set_all_leds_to({0, 0, 0});
+    LEDControl.syncLeds();
+    break;
+  case kaleidoscope::plugin::HostPowerManagement::Resume:
+    LEDControl.paused = false;
+    LEDControl.refreshAll();
+    break;
+  case kaleidoscope::plugin::HostPowerManagement::Sleep:
+    break;
+  }
+}
 
 /** The Model 01's key layouts are defined as 'keymaps'. By default, there are three
   * keymaps: The standard QWERTY keymap, the "Function layer" keymap and the "Numpad"
@@ -153,15 +173,15 @@ KALEIDOSCOPE_INIT_PLUGINS(
     // LEDControl provides support for other LED modes
     LEDControl,
 
+    // HostPowerManagement provides sleep/wake support
+    HostPowerManagement,
+
     // We start with the LED effect that turns off all the LEDs.
     LEDOff,
 
     // The rainbow wave effect lights up your keyboard with all the colors of a rainbow
     // and slowly moves the rainbow across your keyboard
     LEDRainbowWaveEffect,
-
-    // The stalker effect lights up the keys you've pressed recently
-    StalkerEffect,
 
     // The numpad plugin is responsible for lighting up the 'numpad' mode
     // with a custom LED effect
@@ -192,11 +212,6 @@ void setup() {
   // This draws more than 500mA, but looks much nicer than a dimmer effect
   LEDRainbowEffect.brightness(150);
   LEDRainbowWaveEffect.brightness(150);
-
-  // The LED Stalker mode has a few effects. The one we like is
-  // called 'BlazingTrail'. For details on other options,
-  // see https://github.com/keyboardio/Kaleidoscope-LED-Stalker
-  StalkerEffect.variant = STALKER(BlazingTrail);
 
 	// Start the firmware with LED rainbow wave effect turned on.
 	// NOTE: This may cause problems with low-power USB devices.
