@@ -22,6 +22,9 @@
 // Support for controlling the keyboard's LEDs
 #include "Kaleidoscope-LEDControl.h"
 
+// Support for disabling LEDs after inactivity
+#include "Kaleidoscope-IdleLEDs.h"
+
 // Support for host power management (sleep/wake)
 #include "Kaleidoscope-HostPowerManagement.h"
 
@@ -172,6 +175,9 @@ const Key keymaps[][ROWS][COLS] PROGMEM = {
 KALEIDOSCOPE_INIT_PLUGINS(
     // LEDControl provides support for other LED modes
     LEDControl,
+
+    // IdleLEDs turns off the LEDs after 10 minutes
+    IdleLEDs,
 
     // HostPowerManagement provides sleep/wake support
     HostPowerManagement,
