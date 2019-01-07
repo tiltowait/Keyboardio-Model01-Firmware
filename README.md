@@ -7,10 +7,9 @@ My personal Model 01 firmware configuration.
 * MouseKeys
 * LEDControl
 * NumPad
-* LED-Off
+* LEDEffect-Rainbow
 * LED-Stalker
 * Qukeys
-* BetterShifting (my own personal plugin)
 
 ## Special Keys
 
