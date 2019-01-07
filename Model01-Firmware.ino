@@ -25,9 +25,6 @@
 // Support for "Numlock" mode, which is mostly just the Numlock specific LED mode
 #include "Kaleidoscope-NumPad.h"
 
-// Support for an "LED off mode"
-#include "LED-Off.h"
-
 // Support for LED modes that pulse the keyboard's LED in a rainbow pattern
 #include "Kaleidoscope-LEDEffect-Rainbow.h"
 
@@ -36,9 +33,6 @@
 
 // Support for Qukeys
 #include "Kaleidoscope-Qukeys.h"
-
-// Support for BetterShifting
-#include "Kaleidoscope-BetterShifting.h"
 
 /** The Model 01's key layouts are defined as 'keymaps'. By default, there are three
   * keymaps: The standard QWERTY keymap, the "Function layer" keymap and the "Numpad"
@@ -176,9 +170,6 @@ KALEIDOSCOPE_INIT_PLUGINS(
     // The MouseKeys plugin lets you add keys to your keymap which move the mouse.
     MouseKeys,
 
-    // BetterShifting forces proper shifting technique.
-		BetterShifting,
-
 		// Qukeys is used for making the Alt key behave as Enter when tapped.
     Qukeys
   );
@@ -212,10 +203,6 @@ void setup() {
 	// If that becomes a problem, LEDOFF.activate() should be
 	// called instead.
   LEDRainbowWaveEffect.activate();
-
-  // Keys added to BetterShifting.ignoreKeys() will respond no
-  // matter which shift key is pressed.
-  BetterShifting.ignoreKeys(1, Key_LeftGui.raw);
 
   // We want right alt (r2c8) to be enter on tap and alt on hold (L0).
   QUKEYS(
