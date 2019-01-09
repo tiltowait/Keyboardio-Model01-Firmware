@@ -18,12 +18,4 @@
 
 #pragma once
 
-#include "Kaleidoscope-Qukeys.h"
-
-namespace tiltowait {
-namespace Q {
-
-void configure(void);
-
-}
-}
+#define WITH_HOST_POWER_MANAGEMENT 0

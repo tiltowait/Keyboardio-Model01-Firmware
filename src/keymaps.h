@@ -1,20 +1,20 @@
 /* -*- mode: c++ -*-
-* Model01-Sketch -- tiltowait's Model01 Sketch
-* Copyright (C) 2019 Jared Lindsay
-*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ * Model01-Sketch -- tiltowait's Model01 Sketch
+ * Copyright (C) 2019 Jared Lindsay
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #pragma once
 
@@ -72,12 +72,13 @@ enum { QWERTY, FUNCTION, NUMPAD }; // layers
 #define KEY_1PASSWORD   LGUI(Key_Backslash)
 #define KEY_THINGS      LCTRL(LALT(Key_Spacebar))
 
-/* This comment temporarily turns off astyle's indent enforcement
- *   so we can make the keymaps actually resemble the physical key layout better
+/* Temporarily turn off astyle's indent enforcement to make the keymaps better resemble
+ * the physical key layout.
  */
 // *INDENT-OFF*
 
 KEYMAPS(
+  //default layer
   [QWERTY] = KEYMAP_STACKED
   (___,             Key_1,         Key_2,       Key_3,         Key_4, Key_5, KEY_DEL_LINE,
    Key_Backtick,    Key_Q,         Key_W,       Key_E,         Key_R, Key_T, Key_Tab,
@@ -93,6 +94,7 @@ KEYMAPS(
    Key_RightShift, Key_Enter, Key_Spacebar, Key_RightControl,
    ShiftToLayer(FUNCTION)),
 
+  //function layer
   [FUNCTION] =  KEYMAP_STACKED
   (KEY_1PASSWORD, Key_F1,          Key_F2,      Key_F3,     Key_F4,        Key_F5,           Key_LEDEffectNext,
    Key_Tab,       ___,             Key_mouseUp, ___,        Key_mouseBtnR, Key_mouseWarpEnd, Key_mouseWarpNE,
@@ -108,6 +110,7 @@ KEYMAPS(
    ___, ___, Key_Enter, ___,
    KEY_THINGS),
 
+  //numpad layer
   [NUMPAD] =  KEYMAP_STACKED
   (___, ___, ___, ___, ___, ___, ___,
    ___, ___, ___, ___, ___, ___, ___,
