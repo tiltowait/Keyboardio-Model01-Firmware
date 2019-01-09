@@ -1,6 +1,12 @@
 # Keyboardio Model 01 Firmware
 
-My personal Model 01 firmware configuration.
+A lightweight (18,226B PROGMEM, 1125B data) [Keyboardio Model 01](http://keyboard.io) firmware configuration package used by me. It has a number of shortcut keys particular to my system, but it could theoretically be used as a starting point for someone else.
+
+## Installation
+
+You can clone all necessary [Kaleidoscope](https://github.com/keyboardio/Kaleidoscope) code by invoking `make setup`. Additionally, `make update` will do just what it says on the tin.
+
+This functionality is shamelessly stolen from [algernon's sketch](https://github.com/keyboardio/Kaleidoscope).
 
 ## Plugins Used
 
@@ -8,7 +14,6 @@ My personal Model 01 firmware configuration.
 * LEDControl
 * NumPad
 * LEDEffect-Rainbow
-* LED-Stalker
 * Qukeys
 
 ## Special Keys
@@ -31,8 +36,18 @@ A simple shortcut to delete the contents of the line left of the cursor. Also de
 
 A simple shortcut to invoke 1Password Mini (Cmd+\ on my system.).
 
+### `KEY_VS_TERM`
+
+Invokes the built-in terminal for VS Code (custom keyboard shortcut, `Ctrl+Alt+\``).
+
 ## Notes
 
-Some of the plugins are arguably removable, namely NumPad, MouseKeys, and LED-Stalker.
+Some of the plugins are arguably removable, namely NumPad and MouseKeys.
 
-Qukeys is currently used for only a single key (tap Alt for Enter, or hold for Alt). A simpler solution, such as a macro, might be better.
+Qukeys is currently used for only a single key (tap Alt for Enter, or hold for Alt). A simpler solution may be possible.
+
+[`Kaleidoscope-HostPowerManagement`](https://github.com/keyboardio/Kaleidoscope-HostPowerManagement) is currently disabled because of a bug in upstream. I will be revisiting it sometime in the future.
+
+## Special Thanks
+
+Thanks to algernon not only for the `Makefile` and builder, but also for inspiration for the structure of this repo.
