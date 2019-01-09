@@ -23,7 +23,9 @@ namespace Q {
 
 void configure(void) {
   QUKEYS(
-    kaleidoscope::Qukey(0, 2, 8, Key_RightAlt)
+    kaleidoscope::Qukey(0, 2, 8, Key_RightAlt),
+    kaleidoscope::Qukey(0, 3, 6, LGUI(Key_LeftBracket)), //"Back" in Safari
+    kaleidoscope::Qukey(0, 3, 9, LGUI(Key_RightBracket)) //"Forward" in Safari
   );
   Qukeys.setTimeout(200);
   Qukeys.setReleaseDelay(20);
