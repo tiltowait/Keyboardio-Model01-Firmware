@@ -31,11 +31,8 @@
 // Support for "Numlock" mode, which is mostly just the Numlock specific LED mode
 #include "Kaleidoscope-NumPad.h"
 
-// Support for LED modes that pulse the keyboard's LED in a rainbow pattern
-#include "Kaleidoscope-LEDEffect-Rainbow.h"
-
-// Support for Qukeys
-#include "Kaleidoscope-Qukeys.h"
+#include "Rainbow.h"
+#include "Qukeys.h"
 
 /** hostPowerManagementEventHandler dispatches power management events (suspend,
  * resume, and sleep) to other functions that perform action based on these
@@ -214,23 +211,8 @@ void setup() {
   // needs to be explicitly told which keymap layer is your numpad layer
   NumPad.numPadLayer = NUMPAD;
 
-  // We set the brightness of the rainbow effects to 150 (on a scale of 0-255)
-  // This draws more than 500mA, but looks much nicer than a dimmer effect
-  LEDRainbowEffect.brightness(150);
-  LEDRainbowWaveEffect.brightness(150);
-
-	// Start the firmware with LED rainbow wave effect turned on.
-	// NOTE: This may cause problems with low-power USB devices.
-	// If that becomes a problem, LEDOFF.activate() should be
-	// called instead.
-  LEDRainbowWaveEffect.activate();
-
-  // We want right alt (r2c8) to be enter on tap and alt on hold (L0).
-  QUKEYS(
-    kaleidoscope::Qukey(0, 2, 8, Key_RightAlt)
-  );
-  Qukeys.setTimeout(200);
-  Qukeys.setReleaseDelay(20);
+  tiltowait::Rainbow::configure();
+  tiltowait::Q::configure();
 }
 
 /** loop is the second of the standard Arduino sketch functions.
