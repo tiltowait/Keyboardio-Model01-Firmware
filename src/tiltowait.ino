@@ -29,6 +29,10 @@
 #include "Rainbow.h"
 #include "Qukeys.h"
 
+#if WITH_PROPER_SHIFTING
+#include "ProperShifting.h"
+#endif
+
 #if WITH_HOST_POWER_MANAGEMENT
 #include "Kaleidoscope-HostPowerManagement.h"
 
@@ -60,6 +64,9 @@ void hostPowerManagementEventHandler(kaleidoscope::plugin::HostPowerManagement::
 KALEIDOSCOPE_INIT_PLUGINS(
   LEDControl,
   IdleLEDs,
+#if WITH_PROPER_SHIFTING
+  ProperShifting,
+#endif
 #if WITH_HOST_POWER_MANAGEMENT
   HostPowerManagement,
 #endif
