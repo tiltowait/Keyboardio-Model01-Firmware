@@ -32,7 +32,7 @@
 
 // Conditionally included plugins
 #if WITH_PROPER_SHIFTING
-#include "ProperShifting.h"
+#include "Kaleidoscope-ProperShifting.h"
 #endif
 
 #if WITH_HOST_POWER_MANAGEMENT
