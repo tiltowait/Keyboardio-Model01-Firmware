@@ -16,19 +16,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "00-Config.h" // Defines conditional compilation options
+#include "00-Config.h"  // Defines conditional compilation options
 
-//Kaleidoscope core and chosen plugins
+// Kaleidoscope core and chosen plugins
 #include "Kaleidoscope.h"
 #include "Kaleidoscope-MouseKeys.h"
 #include "Kaleidoscope-LEDControl.h"
 #include "Kaleidoscope-IdleLEDs.h"
 #include "Kaleidoscope-NumPad.h"
 
+// Headers particular to this sketch
 #include "keymaps.h"
 #include "Rainbow.h"
 #include "Qukeys.h"
 
+// Conditionally included plugins
 #if WITH_PROPER_SHIFTING
 #include "ProperShifting.h"
 #endif
@@ -57,30 +59,28 @@ void hostPowerManagementEventHandler(kaleidoscope::plugin::HostPowerManagement::
 }
 #endif
 
-/** The order here can be important. For instance, LED effects are added in the
-  * order listed. Also, plugins can consume keystrokes, making them unavailable
-  * to others. For this reason, IdleLEDs needs to be first.
-  */
+// The order here can be important. For instance, LED effects are added in the
+// order listed. Also, plugins can consume keystrokes, making them unavailable
+// to others. For this reason, IdleLEDs needs to be first.
 KALEIDOSCOPE_INIT_PLUGINS(
-  LEDControl,
-  IdleLEDs,
+  LEDControl
+  , IdleLEDs
 #if WITH_PROPER_SHIFTING
-  ProperShifting,
+  , ProperShifting
 #endif
 #if WITH_HOST_POWER_MANAGEMENT
-  HostPowerManagement,
+  , HostPowerManagement
 #endif
-  LEDOff,
-  LEDRainbowWaveEffect,
-  NumPad,
-  MouseKeys,
-  Qukeys
+  , LEDOff
+  , LEDRainbowWaveEffect
+  , NumPad
+  , MouseKeys
+  , Qukeys
 );
 
-/** The 'setup' function is one of the two standard Arduino sketch functions.
-  * It's called when your keyboard first powers up. This is where you set up
-  * Kaleidoscope and any plugins.
-  */
+// The 'setup' function is one of the two standard Arduino sketch functions.
+// It's called when your keyboard first powers up. This is where you set up
+// Kaleidoscope and any plugins.
 void setup() {
   Kaleidoscope.setup();
 
