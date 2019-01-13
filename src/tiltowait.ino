@@ -18,11 +18,11 @@
 #include "00-Config.h"  // Defines conditional compilation options
 
 // Kaleidoscope core and chosen plugins
-#include "Kaleidoscope.h"
-#include "Kaleidoscope-MouseKeys.h"
-#include "Kaleidoscope-LEDControl.h"
-#include "Kaleidoscope-IdleLEDs.h"
-#include "Kaleidoscope-NumPad.h"
+#include <Kaleidoscope.h>
+#include <Kaleidoscope-MouseKeys.h>
+#include <Kaleidoscope-LEDControl.h>
+#include <Kaleidoscope-IdleLEDs.h>
+#include <Kaleidoscope-NumPad.h>
 
 // Headers particular to this sketch
 #include "keymaps.h"
@@ -31,11 +31,11 @@
 
 // Conditionally included plugins
 #if WITH_PROPER_SHIFTING
-#include "Kaleidoscope-ProperShifting.h"
+#include <Kaleidoscope-ProperShifting.h>
 #endif
 
 #if WITH_HOST_POWER_MANAGEMENT
-#include "Kaleidoscope-HostPowerManagement.h"
+#include <Kaleidoscope-HostPowerManagement.h>
 
 // hostPowerManagementEventHandler dispatches power management events (suspend,
 // resume, and sleep) to other functions that perform action based on these
