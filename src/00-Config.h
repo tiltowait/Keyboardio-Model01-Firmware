@@ -18,4 +18,5 @@
 #pragma once
 
 #define WITH_HOST_POWER_MANAGEMENT 0
-#define WITH_PROPER_SHIFTING 1
+#define WITH_PROPER_SHIFTING       1
+#define WITH_AUTO_SHIFT            0

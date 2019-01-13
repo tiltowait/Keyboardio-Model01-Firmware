@@ -34,6 +34,10 @@
 #include <Kaleidoscope-ProperShifting.h>
 #endif
 
+#if WITH_AUTO_SHIFT
+#include <Kaleidoscope-AutoShift.h>
+#endif
+
 #if WITH_HOST_POWER_MANAGEMENT
 #include <Kaleidoscope-HostPowerManagement.h>
 
@@ -75,6 +79,9 @@ KALEIDOSCOPE_INIT_PLUGINS(
   , NumPad
   , MouseKeys
   , Qukeys
+#if WITH_AUTO_SHIFT
+  , AutoShift
+#endif
 );
 
 // The 'setup' function is one of the two standard Arduino sketch functions.
