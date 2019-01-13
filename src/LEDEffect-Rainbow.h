@@ -17,10 +17,10 @@
 
 #pragma once
 
-#include "Kaleidoscope-Qukeys.h"
+#include "Kaleidoscope-LEDEffect-Rainbow.h"
 
 namespace tiltowait {
-namespace Q {
+namespace Rainbow {
 
 void configure(void);
 

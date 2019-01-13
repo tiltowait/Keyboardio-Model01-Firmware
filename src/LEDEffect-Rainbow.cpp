@@ -15,14 +15,16 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#pragma once
-
-#include "Kaleidoscope-Qukeys.h"
+#include "LEDEffect-Rainbow.h"
 
 namespace tiltowait {
-namespace Q {
+namespace Rainbow {
 
-void configure(void);
+void configure(void) {
+  LEDRainbowEffect.brightness(150);
+  LEDRainbowWaveEffect.brightness(150);
+  LEDRainbowWaveEffect.activate();
+}
 
 }
 }
