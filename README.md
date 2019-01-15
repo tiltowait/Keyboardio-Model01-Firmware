@@ -1,6 +1,6 @@
 # Keyboardio Model 01 Firmware
 
-A lightweight (18,226B PROGMEM, 1125B data) [Keyboardio Model 01](http://keyboard.io) firmware configuration package used by me. It has a number of shortcut keys particular to my system, but it could theoretically be used as a starting point for someone else.
+A reasonably lightweight [Keyboardio Model 01](http://keyboard.io) firmware configuration package used by me. It has a number of shortcut keys particular to my system, but it could theoretically be used as a starting point for someone else.
 
 ## Installation
 
@@ -15,6 +15,8 @@ This functionality is shamelessly stolen from [algernon's sketch](https://github
 * NumPad
 * LEDEffect-Rainbow
 * Qukeys
+* ProperShifting
+* TapDance
 
 ## Special Keys
 
@@ -40,6 +42,12 @@ A simple shortcut to invoke 1Password Mini (Cmd+\ on my system.).
 
 Invokes the built-in terminal for VS Code (custom keyboard shortcut, `Ctrl+Alt+\``).
 
+### `TD_BACK` and `TD_FORWARD`
+
+TapDance keys that send left- and right-control when held or browser back and forward (respectively). If TapDance isn't included, then these keys revert to the appropriate control keys.
+
+This functionality was originally implemented in Qukeys, but I kept accidentally triggering them and losing a lot of work.
+
 ## Notes
 
 Some of the plugins are arguably removable, namely NumPad and MouseKeys.
@@ -47,6 +55,10 @@ Some of the plugins are arguably removable, namely NumPad and MouseKeys.
 Qukeys is currently used for only a single key (tap Alt for Enter, or hold for Alt). A simpler solution may be possible.
 
 [`Kaleidoscope-HostPowerManagement`](https://github.com/keyboardio/Kaleidoscope-HostPowerManagement) is currently disabled because of a bug in upstream. I will be revisiting it sometime in the future.
+
+[`Kaleidoscope-ProperShifting`](https://github.com/tiltowait/Kaleidoscope-ProperShifting) is my own, custom plugin.
+
+[`Kaleidoscope-AutoShift`](https://github.com/tiltowait/Kaleidoscope-AutoShift) is another plugin written by me. I have it disabled by default, but it's included for development purposes.
 
 ## Special Thanks
 
