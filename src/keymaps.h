@@ -60,10 +60,7 @@ enum { QWERTY, FUNCTION, NUMPAD };  // Keyboard layers
 #define KEY_THINGS      LCTRL(LALT(Key_Spacebar))
 #define KEY_VS_TERM     LCTRL(LALT(Key_Backtick))
 
-#if WITH_TAP_DANCE
-#define TD_BACK         TD(BACK)
-#define TD_FORWARD      TD(FORWARD)
-#else
+#if !WITH_TAP_DANCE
 #define TD_BACK         Key_LeftControl
 #define TD_FORWARD      Key_RightControl
 #endif

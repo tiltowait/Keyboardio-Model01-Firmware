@@ -58,22 +58,7 @@ void hostPowerManagementEventHandler(
 #endif
 
 #if WITH_TAP_DANCE
-#include <Kaleidoscope-TapDance.h>
-
-enum { BACK, FORWARD };
-
-void tapDanceAction(uint8_t tap_dance_index, byte row, byte col,
-                    uint8_t tap_count,
-                    kaleidoscope::TapDance::ActionType tap_dance_action) {
-  switch (tap_dance_index) {
-  case BACK:
-    return tapDanceActionKeys(tap_count, tap_dance_action, Key_LeftControl,
-                              LGUI(Key_LeftBracket));
-  case FORWARD:
-    return tapDanceActionKeys(tap_count, tap_dance_action, Key_RightControl,
-                              LGUI(Key_RightBracket));
-  }
-}
+#include "TapDance.h"
 #endif
 
 // Headers particular to this sketch
