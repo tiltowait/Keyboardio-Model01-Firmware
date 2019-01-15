@@ -59,8 +59,14 @@ enum { QWERTY, FUNCTION, NUMPAD };  // Keyboard layers
 #define KEY_1PASSWORD   LGUI(Key_Backslash)
 #define KEY_THINGS      LCTRL(LALT(Key_Spacebar))
 #define KEY_VS_TERM     LCTRL(LALT(Key_Backtick))
-#define KEY_FORWARD     LGUI(Key_RightBracket)
-#define KEY_BACK        LGUI(Key_LeftBracket)
+
+#if WITH_TAP_DANCE
+#define TD_BACK         TD(BACK)
+#define TD_FORWARD      TD(FORWARD)
+#else
+#define TD_BACK         Key_LeftControl
+#define TD_FORWARD      Key_RightControl
+#endif
 
 // Define the primary keymaps.
 KEYMAPS(
@@ -70,14 +76,14 @@ KEYMAPS(
    Key_Backtick,    Key_Q,         Key_W,       Key_E,         Key_R, Key_T, Key_Tab,
    Key_PageUp,      Key_A,         Key_S,       Key_D,         Key_F, Key_G,
    Key_PageDown,    Key_Z,         Key_X,       Key_C,         Key_V, Key_B, Key_Escape,
-   KEY_BACK, Key_Backspace, Key_LeftGui, Key_LeftShift,
+   TD_BACK, Key_Backspace, Key_LeftGui, Key_LeftShift,
    ShiftToLayer(FUNCTION),
 
    KEY_LAUNCHBAR,  Key_6,     Key_7,        Key_8,            Key_9,      Key_0,         LockLayer(NUMPAD),
    Key_Enter,      Key_Y,     Key_U,        Key_I,            Key_O,      Key_P,         Key_Equals,
                    Key_H,     Key_J,        Key_K,            Key_L,      Key_Semicolon, Key_Quote,
    KEY_EMDASH,     Key_N,     Key_M,        Key_Comma,        Key_Period, Key_Slash,     Key_Minus,
-   Key_RightShift, Key_Enter, Key_Spacebar, KEY_FORWARD,
+   Key_RightShift, Key_Enter, Key_Spacebar, TD_FORWARD,
    ShiftToLayer(FUNCTION)),
 
   // Function layer.

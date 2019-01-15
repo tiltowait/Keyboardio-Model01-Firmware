@@ -24,11 +24,6 @@
 #include <Kaleidoscope-IdleLEDs.h>
 #include <Kaleidoscope-NumPad.h>
 
-// Headers particular to this sketch
-#include "keymaps.h"
-#include "LEDEffect-Rainbow.h"
-#include "Qukeys.h"
-
 // Conditionally included plugins
 #if WITH_PROPER_SHIFTING
 #include <Kaleidoscope-ProperShifting.h>
@@ -62,6 +57,30 @@ void hostPowerManagementEventHandler(
 }
 #endif
 
+#if WITH_TAP_DANCE
+#include <Kaleidoscope-TapDance.h>
+
+enum { BACK, FORWARD };
+
+void tapDanceAction(uint8_t tap_dance_index, byte row, byte col,
+                    uint8_t tap_count,
+                    kaleidoscope::TapDance::ActionType tap_dance_action) {
+  switch (tap_dance_index) {
+  case BACK:
+    return tapDanceActionKeys(tap_count, tap_dance_action, Key_LeftControl,
+                              LGUI(Key_LeftBracket));
+  case FORWARD:
+    return tapDanceActionKeys(tap_count, tap_dance_action, Key_RightControl,
+                              LGUI(Key_RightBracket));
+  }
+}
+#endif
+
+// Headers particular to this sketch
+#include "keymaps.h"
+#include "LEDEffect-Rainbow.h"
+#include "Qukeys.h"
+
 // The order here can be important. For instance, LED effects are added in the
 // order listed. Also, plugins can consume keystrokes, making them unavailable
 // to others. For this reason, IdleLEDs needs to be first.
@@ -81,6 +100,9 @@ KALEIDOSCOPE_INIT_PLUGINS(
   , Qukeys
 #if WITH_AUTO_SHIFT
   , AutoShift
+#endif
+#if WITH_TAP_DANCE
+  , TapDance
 #endif
 );
 
