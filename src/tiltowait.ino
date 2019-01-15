@@ -20,11 +20,9 @@
 // Kaleidoscope core and chosen plugins
 #include <Kaleidoscope.h>
 #include <Kaleidoscope-MouseKeys.h>
-#include <Kaleidoscope-LEDControl.h>
 #include <Kaleidoscope-IdleLEDs.h>
 #include <Kaleidoscope-NumPad.h>
 
-// Conditionally included plugins
 #if WITH_PROPER_SHIFTING
 #include <Kaleidoscope-ProperShifting.h>
 #endif
@@ -34,37 +32,17 @@
 #endif
 
 #if WITH_HOST_POWER_MANAGEMENT
-#include <Kaleidoscope-HostPowerManagement.h>
-
-// hostPowerManagementEventHandler dispatches power management events (suspend,
-// resume, and sleep) to other functions that perform action based on these
-// events.
-void hostPowerManagementEventHandler(
-    kaleidoscope::plugin::HostPowerManagement::Event event) {
-  switch (event) {
-  case kaleidoscope::plugin::HostPowerManagement::Suspend:
-    LEDControl.paused = true;
-    LEDControl.set_all_leds_to({0, 0, 0});
-    LEDControl.syncLeds();
-    break;
-  case kaleidoscope::plugin::HostPowerManagement::Resume:
-    LEDControl.paused = false;
-    LEDControl.refreshAll();
-    break;
-  case kaleidoscope::plugin::HostPowerManagement::Sleep:
-    break;
-  }
-}
+#include "HostPowerManagement.h"
 #endif
 
+// Headers particular to this sketch
 #if WITH_TAP_DANCE
 #include "TapDance.h"
 #endif
 
-// Headers particular to this sketch
-#include "keymaps.h"
 #include "LEDEffect-Rainbow.h"
 #include "Qukeys.h"
+#include "keymaps.h"  // Should be last in case any plugins define special keys.
 
 // The order here can be important. For instance, LED effects are added in the
 // order listed. Also, plugins can consume keystrokes, making them unavailable
