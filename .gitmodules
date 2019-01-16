@@ -1,0 +1,9 @@
+[submodule "lib/plugins/ProperShifting"]
+	path = lib/plugins/ProperShifting
+	url = git@github.com:tiltowait/Kaleidoscope-ProperShifting.git
+[submodule "lib/plugins/AutoShift"]
+	path = lib/plugins/AutoShift
+	url = git@github.com:tiltowait/Kaleidoscope-AutoShift.git
+[submodule "lib/hardware/keyboardio"]
+	path = lib/hardware/keyboardio
+	url = https://github.com/keyboardio/Kaleidoscope-Bundle-Keyboardio.git
