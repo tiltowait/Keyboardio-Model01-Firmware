@@ -21,9 +21,13 @@ void tapDanceAction(uint8_t tap_dance_index, byte row, byte col,
                     uint8_t tap_count,
                     kaleidoscope::TapDance::ActionType tap_dance_action) {
   switch (tap_dance_index) {
+  // 1. Left control
+  // 2. Shift+[
   case BACK:
     return tapDanceActionKeys(tap_count, tap_dance_action, Key_LeftControl,
                               LGUI(Key_LeftBracket));
+  // 1. Right control
+  // 2. Shift+]
   case FORWARD:
     return tapDanceActionKeys(tap_count, tap_dance_action, Key_RightControl,
                               LGUI(Key_RightBracket));
