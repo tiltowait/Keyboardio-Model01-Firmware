@@ -1,22 +1,22 @@
 # Keyboardio Model 01 Firmware
 
-A reasonably lightweight [Keyboardio Model 01](http://keyboard.io) firmware configuration package used by me. It has a number of shortcut keys particular to my system, but it could theoretically be used as a starting point for someone else.
+A reasonably lightweight [Keyboardio Model 01](http://keyboard.io) firmware configuration package. It uses a QWERTY layout and has a number of shortcut keys particular to my system, but it could theoretically be used as a starting point for someone else.
 
 ## Installation
 
-You can clone all necessary [Kaleidoscope](https://github.com/keyboardio/Kaleidoscope) code by invoking `make setup`. Additionally, `make update` will do just what it says on the tin.
+You can pull in all necessary [Kaleidoscope](https://github.com/keyboardio/Kaleidoscope) code by invoking `make setup`. Additionally, `make update` will do just what it says on the tin.
 
 This functionality is shamelessly stolen from [algernon's sketch](https://github.com/keyboardio/Kaleidoscope).
 
 ## Plugins Used
 
-* MouseKeys
-* LEDControl
-* NumPad
-* LEDEffect-Rainbow
-* Qukeys
-* ProperShifting
-* TapDance
+* [IdleLEDs](https://github.com/keyboardio/Kaleidoscope/blob/master/doc/plugin/IdleLEDs.md)
+* [LEDEffect-Rainbow](https://github.com/keyboardio/Kaleidoscope/blob/master/doc/plugin/LEDEffect-Rainbow.md)
+* [MouseKeys](https://github.com/keyboardio/Kaleidoscope/blob/master/doc/plugin/MouseKeys.md)
+* [NumPad](https://github.com/keyboardio/Kaleidoscope/blob/master/doc/plugin/NumPad.md)
+* [ProperShifting](https://github.com/tiltowait/Kaleidoscope-ProperShifting)
+* [Qukeys](https://github.com/keyboardio/Kaleidoscope/blob/master/doc/plugin/Qukeys.md)
+* [TapDance](https://github.com/keyboardio/Kaleidoscope/blob/master/doc/plugin/TapDance.md)
 
 ## Special Keys
 
@@ -50,15 +50,10 @@ This functionality was originally implemented in Qukeys, but I kept accidentally
 
 ## Notes
 
-Some of the plugins are arguably removable, namely NumPad and MouseKeys.
-
-Qukeys is currently used for only a single key (tap Alt for Enter, or hold for Alt). A simpler solution may be possible.
-
-[`Kaleidoscope-HostPowerManagement`](https://github.com/keyboardio/Kaleidoscope-HostPowerManagement) is currently disabled because of a bug in upstream. I will be revisiting it sometime in the future.
-
-[`Kaleidoscope-ProperShifting`](https://github.com/tiltowait/Kaleidoscope-ProperShifting) is my own, custom plugin.
-
-[`Kaleidoscope-AutoShift`](https://github.com/tiltowait/Kaleidoscope-AutoShift) is another plugin written by me. I have it disabled by default, but it's included for development purposes.
+* Some of the plugins are arguably removable, namely NumPad and MouseKeys.
+* Qukeys is currently used for only a single key (tap Alt for Enter, or hold for Alt). A simpler solution may be possible.
+* [HostPowerManagement](https://github.com/keyboardio/Kaleidoscope/blob/master/doc/plugin/HostPowerManagement.md) is currently disabled due to a bug in upstream
+* [AutoShift](https://github.com/tiltowait/Kaleidoscope-AutoShift) is currently in development and is disabled by default.
 
 ## Special Thanks
 
