@@ -58,8 +58,8 @@ enum { QWERTY, FUNCTION, NUMPAD };  // Keyboard layers
 #define KEY_DEL_LINE    LGUI(Key_Backspace)
 #define KEY_1PASSWORD   LGUI(Key_Backslash)
 #define KEY_THINGS      LCTRL(LALT(Key_Spacebar))
-#define KEY_SCRIV_MIN   LGUI(LSHIFT(Key_0))  // Custom Scrivener layout
-#define KEY_SCRIV_STD   LGUI(LSHIFT(Key_1))  // Another Scrivener layout
+#define KEY_SCRIV_MIN   LGUI(LSHIFT(Key_1))  // Custom Scrivener layout
+#define KEY_SCRIV_STD   LGUI(LSHIFT(Key_2))  // Another Scrivener layout
 
 #if !WITH_TAP_DANCE
 #define TD_BACK         Key_LeftControl
@@ -90,7 +90,7 @@ KEYMAPS(
    Key_Tab,       ___,             Key_mouseUp,   ___,           Key_mouseBtnR, Key_mouseWarpEnd, Key_mouseWarpNE,
    Key_Home,      Key_mouseL,      Key_mouseDn,   Key_mouseR,    Key_mouseBtnL, Key_mouseWarpNW,
    Key_End,       Key_PrintScreen, Key_Insert,    ___,           Key_mouseBtnM, Key_mouseWarpSW,  Key_mouseWarpSE,
-   ___,           Key_Delete,      KEY_SCRIV_MIN, KEY_SCRIV_MIN,
+   ___,           Key_Delete,      KEY_SCRIV_MIN, KEY_SCRIV_STD,
    ___,
 
    Consumer_ScanPreviousTrack, Key_F6,                 Key_F7,                   Key_F8,                   Key_F9,          Key_F10,          Key_F11,
