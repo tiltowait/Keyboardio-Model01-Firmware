@@ -42,6 +42,10 @@ A simple shortcut to invoke 1Password Mini (Cmd+\ on my system.).
 
 Invokes the built-in terminal for VS Code (custom keyboard shortcut, `Ctrl+Alt+\``).
 
+### `KEY_SCRIV_MIN` and `KEY_SCRIV_STD`
+
+Keyboard shortcuts to custom [Scrivener](https://www.literatureandlatte.com) layouts.
+
 ### `TD_BACK` and `TD_FORWARD`
 
 TapDance keys that send left- and right-control when held or browser back and forward (respectively). If TapDance isn't included, then these keys revert to the appropriate control keys.
