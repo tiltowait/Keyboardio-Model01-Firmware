@@ -26,4 +26,4 @@ enum { BACK, FORWARD };
 
 void tapDanceAction(uint8_t tap_dance_index, byte row, byte col,
                     uint8_t tap_count,
-                    kaleidoscope::TapDance::ActionType tap_dance_action);
+                    kaleidoscope::plugin::TapDance::ActionType tap_dance_action);

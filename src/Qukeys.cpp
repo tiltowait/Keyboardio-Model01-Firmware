@@ -22,7 +22,7 @@ namespace Q {
 
 void configure(void) {
   QUKEYS(
-    kaleidoscope::Qukey(0, 2, 8, Key_RightAlt),
+    kaleidoscope::plugin::Qukey(0, 2, 8, Key_RightAlt),
   );
   Qukeys.setTimeout(200);
   Qukeys.setReleaseDelay(20);
