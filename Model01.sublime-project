@@ -1,0 +1,35 @@
+{
+	"folders":
+	[
+		{
+			"folder_exclude_patterns":
+			[
+				"lib",
+				"output"
+			],
+			"name": "Sketch",
+			"path": "."
+		},
+		{
+			"file_exclude_patterns":
+			[
+				".git*",
+				".travis.yml"
+			],
+			"folder_exclude_patterns":
+			[
+				"x86"
+			],
+			"name": "Model01 Firmware",
+			"path": "lib/hardware/keyboardio"
+		},
+		{
+			"name": "Custom Plugins",
+			"path": "lib/plugins"
+		},
+		{
+			"name": "Plugin Documentation",
+			"path": "lib/hardware/keyboardio/avr/libraries/Kaleidoscope/doc/plugin"
+		}
+	]
+}
