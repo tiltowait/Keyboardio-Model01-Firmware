@@ -23,6 +23,10 @@
 			"name": "Model01 Firmware",
 			"path": "lib/hardware/keyboardio"
 		},
+    {
+      "name": "Official Plugins",
+      "path": "lib/hardware/keyboardio/avr/libraries/Kaleidoscope/src/kaleidoscope/plugin"
+    },
 		{
 			"name": "Custom Plugins",
 			"path": "lib/plugins"
