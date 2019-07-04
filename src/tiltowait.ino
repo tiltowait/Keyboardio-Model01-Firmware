@@ -22,6 +22,7 @@
 #include <Kaleidoscope-MouseKeys.h>
 #include <Kaleidoscope-IdleLEDs.h>
 #include <Kaleidoscope-NumPad.h>
+#include <Kaleidoscope-QuickNav.h>
 
 #if WITH_PROPER_SHIFTING
 #include <Kaleidoscope-ProperShifting.h>
@@ -36,10 +37,6 @@
 #endif
 
 // Headers particular to this sketch
-#if WITH_TAP_DANCE
-#include "TapDance.h"
-#endif
-
 #include "LEDEffect-Rainbow.h"
 #include "Qukeys.h"
 #include "keymaps.h"  // Should be last in case any plugins define special keys.
@@ -64,9 +61,7 @@ KALEIDOSCOPE_INIT_PLUGINS(
 #if WITH_AUTO_SHIFT
   , AutoShift
 #endif
-#if WITH_TAP_DANCE
-  , TapDance
-#endif
+  , QuickNav
 );
 
 // The 'setup' function is one of the two standard Arduino sketch functions.
