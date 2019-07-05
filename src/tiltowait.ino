@@ -22,7 +22,6 @@
 #include <Kaleidoscope-MouseKeys.h>
 #include <Kaleidoscope-IdleLEDs.h>
 #include <Kaleidoscope-NumPad.h>
-#include <Kaleidoscope-QuickNav.h>
 
 #if WITH_PROPER_SHIFTING
 #include <Kaleidoscope-ProperShifting.h>
@@ -39,6 +38,7 @@
 // Headers particular to this sketch
 #include "LEDEffect-Rainbow.h"
 #include "Qukeys.h"
+#include "QuickNav.h"
 #include "keymaps.h"  // Should be last in case any plugins define special keys.
 
 // The order here can be important. For instance, LED effects are added in the
@@ -73,7 +73,8 @@ void setup() {
   NumPad.numPadLayer = NUMPAD;
 
   tiltowait::Rainbow::configure();
-  tiltowait::Q::configure();
+  tiltowait::QKYS::configure();
+  tiltowait::QNav::configure();
 }
 
 void loop() {

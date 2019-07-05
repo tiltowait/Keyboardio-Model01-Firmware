@@ -18,7 +18,7 @@
 #include "Qukeys.h"
 
 namespace tiltowait {
-namespace Q {
+namespace QKYS {
 
 void configure(void) {
   QUKEYS(

@@ -17,10 +17,10 @@
 
 #pragma once
 
-#include "Kaleidoscope-Qukeys.h"
+#include "Kaleidoscope-QuickNav.h"
 
 namespace tiltowait {
-namespace QKYS {
+namespace QNav {
 
 void configure(void);
 
